@@ -9,10 +9,11 @@ export default function DownloadTracksFromDatabase() {
         <DTFDProvider>
             <Card>
                 <Card.Content>
-                    <Text>On button, fetch tracks in embedded database and stream each one</Text>
-                    <Text>Should skip all tracks already downloaded</Text>
                     <DTFDButton/>
-                    <Text>Progress should be updated below</Text>
+                </Card.Content>
+            </Card>
+            <Card>
+                <Card.Content>
                     <Progress />
                 </Card.Content>
             </Card>

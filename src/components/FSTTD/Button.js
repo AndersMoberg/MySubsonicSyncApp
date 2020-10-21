@@ -6,6 +6,6 @@ import { FSTTDContext } from './Context';
 export default function FSTTDButton() {
     const FSTTD = useContext(FSTTDContext)
 
-    return(<Button onPress={FSTTD.SyncToDatabase}>Sync list of tracks</Button>);
+    return(<Button loading={FSTTD.ongoing} mode="contained" onPress={FSTTD.SyncToDatabase}>Sync list of tracks</Button>);
 }
 

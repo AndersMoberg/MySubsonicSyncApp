@@ -9,6 +9,10 @@ export const DTFDContext = React.createContext(null);
 
 export function DTFDProvider(props) {
     const [currentStatus, setcurrentStatus] = useState(1);
+    const [currentAmountOfTracks, setCurrentAmountOfTracks] = useState(0);
+    const [amountOfTracks, setamountOfTracks] = useState(0);
+    const [downloadQueued, setDownloadQueued] = useState(false);
+
     const ServerSettings = useContext(ServerSettingsContext);
 
     async function GetAllTracks() {
@@ -87,8 +91,11 @@ export function DTFDProvider(props) {
 
     const BeginDownload = async function () {
         await GetPermissionsPromise();
+        setDownloadQueued(true);
         tracks = await GetAllTracks();
         tracksAmount = tracks.length;
+        setCurrentAmountOfTracks(0);
+        setamountOfTracks(tracksAmount);
         for (let index = 0; index < tracksAmount; index++) {
             const trackId = tracks[index].trackID;
             const track = await GetTrackDetailsPromise( trackId);
@@ -97,16 +104,20 @@ export function DTFDProvider(props) {
             if ((await DoesFileExists(filepath)) == false) {
                 await GetStreamTrackPromise(trackId, filepath);
             }
-            console.log("index " + index + " out of " + tracksAmount);
             const percentage = index / tracks.length;
-            console.log("percentage done: " + percentage);
+            setCurrentAmountOfTracks(index + 1);
             setcurrentStatus(percentage);
         }
+        setDownloadQueued(false);
     }
 
     return (
         <DTFDContext.Provider value={
-            { currentStatus, setcurrentStatus, BeginDownload }
+            { currentStatus, setcurrentStatus, 
+                amountOfTracks, setamountOfTracks, 
+                currentAmountOfTracks, setCurrentAmountOfTracks, 
+                downloadQueued, setDownloadQueued, 
+                BeginDownload }
         }>
             {props.children}
         </DTFDContext.Provider>

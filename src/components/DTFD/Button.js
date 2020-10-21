@@ -6,6 +6,6 @@ import { DTFDContext } from './Context';
 export default function DTFDButton() {
     const DTFD = useContext(DTFDContext)
 
-    return(<Button mode="contained" onPress={DTFD.BeginDownload}>Start syncing</Button>);
+    return(<Button loading={DTFD.downloadQueued} mode="contained" onPress={DTFD.BeginDownload}>Start syncing</Button>);
 }
 

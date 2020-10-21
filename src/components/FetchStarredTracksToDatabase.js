@@ -10,8 +10,8 @@ export default function FetchStarredTracksToDatabase() {
         <FSTTDProvider>
             <Card>
                 <Card.Content>
-                    <Text>Do dummy Subsonic request and save track results to embedded database</Text>
                     <FSTTDButton/>
+                    <Divider/>
                     <FSTTDStatus/>
                 </Card.Content>
             </Card>

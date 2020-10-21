@@ -6,6 +6,7 @@ export const FSTTDContext = React.createContext(null);
 
 export function FSTTDProvider(props) {
     const [currentStatus, setcurrentStatus] = useState("");
+    const [ongoing, setongoing] = useState(false);
     const ServerSettings = useContext(ServerSettingsContext);
 
     async function GetListOfStarredTracksAndAlbums() {
@@ -68,15 +69,16 @@ export function FSTTDProvider(props) {
     }
 
     const SyncToDatabase = async function () {
-        setcurrentStatus("Fetching...");
+        setongoing(true);
         const result = await GetListOfStarredTracksAndAlbums();
         await InsertIntoDatabase(result);
         setcurrentStatus("Successful fetch at " + new Date(Date.now()).toUTCString() + " with " + result.length + " tracks");
+        setongoing(false);
     }
 
     return (
         <FSTTDContext.Provider value={
-            { currentStatus, setcurrentStatus, SyncToDatabase }
+            { currentStatus, setcurrentStatus, ongoing, setongoing, SyncToDatabase }
         }>
             {props.children}
         </FSTTDContext.Provider>
