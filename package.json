@@ -1,6 +1,6 @@
 {
   "name": "MySubsonicSyncApp",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -13,7 +13,6 @@
     "md5-hex": "^3.0.1",
     "react": "16.13.1",
     "react-native": "0.63.2",
-    "react-native-notifications": "^3.3.4",
     "react-native-paper": "^4.2.0",
     "react-native-sqlite-storage": "^5.0.0",
     "react-native-vector-icons": "^7.1.0",
