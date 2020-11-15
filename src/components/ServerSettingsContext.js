@@ -21,6 +21,21 @@ export function ServerSettingsProvider(props) {
         return url;
     }
 
+    const doesPingWork = async () => {
+        finalURL = generateURLObject('/rest/ping');
+        result = await fetch(finalURL.toString())
+        .then((res) => { return res.json(); })
+        .catch(() => {
+            return undefined;
+        })
+
+        if(result === undefined) {
+            return false;
+        }
+        const subsonic = result["subsonic-response"];
+        return subsonic && subsonic.status === "ok";
+    }
+
     useEffect(() => {
         loadFromAsyncStorage();
     }, []);
@@ -43,7 +58,7 @@ export function ServerSettingsProvider(props) {
     }
 
     return <ServerSettingsContext.Provider value={
-        { ServerAddress, setServerAddress, Username, setUsername, Password, setPassword, generateURLObject, loadFromAsyncStorage }
+        { ServerAddress, setServerAddress, Username, setUsername, Password, setPassword, generateURLObject, doesPingWork, loadFromAsyncStorage }
     }>
         {props.children}
     </ServerSettingsContext.Provider>;

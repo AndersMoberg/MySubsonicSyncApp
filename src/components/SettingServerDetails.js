@@ -32,6 +32,15 @@ export default function SettingServerDetails() {
             console.error(error);
         }
     }
+
+    async function doAPing() {
+        const pingSuccessful = await ServerSettings.doesPingWork();
+        if(pingSuccessful == true) {
+            alert("PING! Successful");
+        } else {
+            alert("Ping failed..");
+        }
+    }
  
     return(<Card>
         <Card.Title title="Server settings" subtitle="'Apply settings' will save settings for future sessions" />
@@ -43,6 +52,7 @@ export default function SettingServerDetails() {
             <TextInput ref={PasswordElement} secureTextEntry={true} label="Password" value={ServerSettings.Password}
                 onChangeText={text => ServerSettings.setPassword(text)}/>
             <Button onPress={ApplySettings}>Apply settings</Button>
+            <Button onPress={doAPing}>Ping server</Button>
         </Card.Content>
     </Card>)
 }

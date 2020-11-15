@@ -56,7 +56,7 @@ export function DTFDProvider(props) {
     function GetStreamTrackPromise(id, path) {
         finalURL = ServerSettings.generateURLObject('/rest/stream');
         finalURL.searchParams.append("id", id)
-        return FetchBlobPath(url.toString(), path);
+        return FetchBlobPath(finalURL.toString(), path);
     }
 
     function FetchBlobPath(url, path) {
@@ -90,11 +90,16 @@ export function DTFDProvider(props) {
 
 
     const BeginDownload = async function () {
+        if(await ServerSettings.doesPingWork() == false) {
+            alert("Connection to server failed. Please check settings!")
+            return;
+        }
         await GetPermissionsPromise();
         setDownloadQueued(true);
+        setCurrentAmountOfTracks(0);
+        setamountOfTracks(0);
         tracks = await GetAllTracks();
         tracksAmount = tracks.length;
-        setCurrentAmountOfTracks(0);
         setamountOfTracks(tracksAmount);
         for (let index = 0; index < tracksAmount; index++) {
             const trackId = tracks[index].trackID;

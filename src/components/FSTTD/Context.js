@@ -70,6 +70,11 @@ export function FSTTDProvider(props) {
 
     const SyncToDatabase = async function () {
         setongoing(true);
+        if(await ServerSettings.doesPingWork() == false) {
+            setongoing(false);
+            alert("Connection to server failed. Please check settings!")
+            return;
+        }
         const result = await GetListOfStarredTracksAndAlbums();
         await InsertIntoDatabase(result);
         setcurrentStatus("Successful fetch at " + new Date(Date.now()).toUTCString() + " with " + result.length + " tracks");
