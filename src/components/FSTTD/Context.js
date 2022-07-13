@@ -13,10 +13,10 @@ export function FSTTDProvider(props) {
         const starred = await GetStarredPromise();
         let final = Object.values(starred.song)
 
-        for (let index = 0; index < starred.album.length; index++) {
-            const album = await GetAlbumPromise(starred.album[index].id);
-            final = [...final, ...Object.values(album.song)];
-        }
+        // for (let index = 0; index < starred.album.length; index++) {
+        //     const album = await GetAlbumPromise(starred.album[index].id);
+        //     final = [...final, ...Object.values(album.song)];
+        // }
 
         return final;
     }
