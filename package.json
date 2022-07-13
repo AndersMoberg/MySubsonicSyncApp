@@ -4,31 +4,24 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint ."
+    "start": "react-native start"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.0",
-    "md5-hex": "^3.0.1",
-    "react": "16.13.1",
-    "react-native": "0.63.2",
-    "react-native-paper": "^4.2.0",
-    "react-native-sqlite-storage": "^5.0.0",
-    "react-native-vector-icons": "^7.1.0",
+    "@react-navigation/native": "^6.0.6",
+    "md5-hex": "^4.0.0",
+    "react": "17.0.2",
+    "react-native": "0.66.3",
+    "react-native-background-task": "^0.2.1",
+    "react-native-paper": "^4.10.1",
+    "react-native-sqlite-storage": "^6.0.1",
+    "react-native-vector-icons": "^9.0.0",
     "rn-fetch-blob": "git+https://github.com/joltup/rn-fetch-blob.git"
   },
   "devDependencies": {
-    "@babel/core": "7.11.1",
-    "@babel/runtime": "7.11.2",
-    "@react-native-community/eslint-config": "1.1.0",
-    "babel-jest": "25.5.1",
-    "eslint": "6.8.0",
-    "jest": "25.5.4",
-    "metro-react-native-babel-preset": "0.59.0",
-    "react-test-renderer": "16.13.1"
-  },
-  "jest": {
-    "preset": "react-native"
+    "@babel/core": "7.16.0",
+    "@babel/runtime": "7.16.3",
+    "metro-react-native-babel-preset": "0.66.2",
+    "react-test-renderer": "17.0.2"
   }
 }

@@ -1,6 +1,7 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { View } from "react-native";
 import { Provider, DefaultTheme, Appbar } from "react-native-paper";
+import { NavigationContainer } from '@react-navigation/native';
 
 import { ServerSettingsProvider } from './src/components/ServerSettingsContext';
 import { RuntimeProvider, VIEW_ENUM } from './src/components/RuntimeContext';
@@ -18,6 +19,8 @@ const theme = {
   },
 };
 
+const Stack = createNativeStackNavigator();
+
 const App = () => {
   const [appState, setAppState] = useState(VIEW_ENUM.APP);
 
@@ -32,7 +35,7 @@ const App = () => {
     return (<><Appbar.Header>
       <Appbar.BackAction onPress={() => setAppState(VIEW_ENUM.APP)} />
     </Appbar.Header>
-    <SettingServerDetails /></>)
+      <SettingServerDetails /></>)
   }
 
   const CurrentView = () => {
@@ -45,15 +48,19 @@ const App = () => {
   }
 
   return (
-    <Provider theme={theme}>
-      <RuntimeProvider view={setAppState}>
-        <ServerSettingsProvider>
-          <View>
-            {CurrentView()}
-          </View>
-        </ServerSettingsProvider>
-      </RuntimeProvider>
-    </Provider>
+    <NavigationContainer>
+      <Provider theme={theme}>
+        <RuntimeProvider view={setAppState}>
+          <ServerSettingsProvider>
+            <View>
+              {/* <Stack.Navigator>
+                {CurrentView()}
+              </Stack.Navigator> */}
+            </View>
+          </ServerSettingsProvider>
+        </RuntimeProvider>
+      </Provider>
+    </NavigationContainer>
   );
 };
 
