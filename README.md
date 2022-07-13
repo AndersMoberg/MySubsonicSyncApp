@@ -1,5 +1,8 @@
 # MySubsonicSyncApp
 
+> **Note**
+> I'm archiving this project after one last patch to suit my personal needs. If I were to return to a similar app, I'm considering redoing the entire app from scratch, not in React Native.
+
 React Native app for mobile, meant for use with Subsonic servers.
 
 ![Screenshot of v0.0.x](doc/Screenshot_v0.0.png)
